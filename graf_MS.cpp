@@ -110,17 +110,29 @@ void graf_MS::przepiszIncydentneNaKopiec(wierzcholek* w, kopiec &K) {
 }
 
 krawedz* graf_MS::nastepnaKrawedz(int indeks) {
+  
+  while (m < wierzcholki.size() and macierzSasiedztwa[m][n] == NULL) {
+    
+    n++; 
+    if (n >= m - 1) { m++; n = 0; }
+    
+  }
 
-  if (wierzcholki.size()*(wierzcholki.size()-1)/2-1 < indeks)
+  if (m >= wierzcholki.size()) {
+    
+    m = 1; n = 0;
     return NULL;
-  
-  int m=0, n=0;
-  
-  while (m*(m+1)/2 > indeks or (m+1)*(m+2)/2 <= indeks) m++;
-  n = indeks - m*(m+1)/2;
-  m++;
 
-  return macierzSasiedztwa[m][n];
+  }
+
+  else {
+
+    krawedz* k = macierzSasiedztwa[m][n];
+    n++;
+    if (n >= m - 1) { m++; n = 0; }
+    return k;
+
+  }
 }
 
 void graf_MS::wyczysc() {

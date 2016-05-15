@@ -14,6 +14,7 @@ int main() {
   char buffer[40];
   Timer timer;
   struktura wynik;
+  double pomiar;
   
   for (double gestosc : {0.25, 0.5, 0.75, 1.0}) {
 
@@ -35,6 +36,16 @@ int main() {
       generujGraf<graf_LK>(G_LK, n_wierzcholkow, gestosc);     
       generujGraf<graf_MS>(G_MS, n_wierzcholkow, gestosc);
 
+      sprintf(buffer, "./grafy/graf_MS_%d_%3.1f%%.txt",
+      	      n_wierzcholkow, gestosc_procent);
+      nazwa_pliku = string(buffer);
+      G_MS.zapiszDoPliku(nazwa_pliku.c_str());
+
+      sprintf(buffer, "./grafy/graf_LK_%d_%3.1f%%.txt",
+      	      n_wierzcholkow, gestosc_procent);
+      nazwa_pliku = string(buffer);
+      G_LK.zapiszDoPliku(nazwa_pliku.c_str());
+      
       timer.start();
       wynik = BellmanFord<graf_LK>(G_LK, 0);
       timer.stop();

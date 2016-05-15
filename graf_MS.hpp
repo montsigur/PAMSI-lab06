@@ -7,8 +7,12 @@
 using namespace std;
 
 class graf_MS: public graf {
+
+  unsigned int m, n;
   
 public:
+
+  graf_MS() {indeks = -1; m = 1; n = 0; }
   
   vector< vector<krawedz*> > macierzSasiedztwa;
 
