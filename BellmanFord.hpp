@@ -58,7 +58,7 @@ struktura BellmanFord(Graf G, int indeks) {
   }
   wynik.odleglosci[s->indeks] = 0;
   
-  for (unsigned int i=0; i<ilosc_wierzcholkow-1; i++)
+  for (unsigned int i=0; i<ilosc_wierzcholkow; i++)
     for (unsigned int j=0;
 	 j<ilosc_wierzcholkow*(ilosc_wierzcholkow-1)/2; j++) {
 
