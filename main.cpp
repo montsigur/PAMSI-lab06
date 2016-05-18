@@ -30,68 +30,69 @@ int main() {
     
     for (int n_wierzcholkow : {10, 50, 100, 500, 1000}) {
 
-      // 100 pomiarów dla jednej konfiguracji (uśrednione)
-      
-      for (int i=0; i<100; i++) {
-      
-	graf_MS G_MS;
-	graf_LK G_LK;
+      // 10 pomiarów dla jednej konfiguracji (uśrednione)
 
-	generujGraf<graf_LK>(G_LK, n_wierzcholkow, gestosc);     
-	generujGraf<graf_MS>(G_MS, n_wierzcholkow, gestosc);
+      // pomiar_LK = pomiar_MS = 0.0;
       
-	timer.start();
-	wynik = BellmanFord<graf_LK>(G_LK, 0);
-	timer.stop();
-	pomiar_LK += timer.getElapsedTimeInMilliSec();
-
-	timer.start();
-	wynik = BellmanFord<graf_MS>(G_MS, 0);
-	timer.stop();
-	pomiar_MS += timer.getElapsedTimeInMilliSec();
-
-      }
+      // for (int i=0; i<10; i++) {
       
-      plik_LK << pomiar_LK / 100.0 << endl;
-      plik_MS << pomiar_MS / 100.0 << endl;
+      // 	graf_MS G_MS;
+      // 	graf_LK G_LK;
 
+      // 	generujGraf<graf_LK>(G_LK, n_wierzcholkow, gestosc);     
+      // 	generujGraf<graf_MS>(G_MS, n_wierzcholkow, gestosc);
+      
+      // 	timer.start();
+      // 	wynik = BellmanFord<graf_LK>(G_LK, 0);
+      // 	timer.stop();
+      // 	pomiar_LK += timer.getElapsedTimeInMilliSec();
+
+      // 	timer.start();
+      // 	wynik = BellmanFord<graf_MS>(G_MS, 0);
+      // 	timer.stop();
+      // 	pomiar_MS += timer.getElapsedTimeInMilliSec();
+
+      // }
+      
+      // plik_LK << pomiar_LK / 10.0 << endl;
+      // plik_MS << pomiar_MS / 10.0 << endl;
 
       
       // Pojedynczy pomiar i zapis do pliku
       
-      // graf_MS G_MS;
-      // graf_LK G_LK;
+      graf_MS G_MS;
+      graf_LK G_LK;
 
-      // generujGraf<graf_LK>(G_LK, n_wierzcholkow, gestosc);     
-      // generujGraf<graf_MS>(G_MS, n_wierzcholkow, gestosc);
+      generujGraf<graf_LK>(G_LK, n_wierzcholkow, gestosc);     
+      generujGraf<graf_MS>(G_MS, n_wierzcholkow, gestosc);
 
-      // sprintf(buffer, "./grafy/graf_MS_%d_%3.1f%%.txt",
-      // 	      n_wierzcholkow, gestosc_procent);
-      // nazwa_pliku = string(buffer);
-      // G_MS.zapiszDoPliku(nazwa_pliku.c_str());
+      sprintf(buffer, "./grafy/graf_MS_%d_%3.1f%%.txt",
+      	      n_wierzcholkow, gestosc_procent);
+      nazwa_pliku = string(buffer);
+      G_MS.zapiszDoPliku(nazwa_pliku.c_str());
 
-      // sprintf(buffer, "./grafy/graf_LK_%d_%3.1f%%.txt",
-      // 	      n_wierzcholkow, gestosc_procent);
-      // nazwa_pliku = string(buffer);
-      // G_LK.zapiszDoPliku(nazwa_pliku.c_str());
+      sprintf(buffer, "./grafy/graf_LK_%d_%3.1f%%.txt",
+      	      n_wierzcholkow, gestosc_procent);
+      nazwa_pliku = string(buffer);
+      G_LK.zapiszDoPliku(nazwa_pliku.c_str());
       
-      // timer.start();
-      // wynik = BellmanFord<graf_LK>(G_LK, 0);
-      // timer.stop();
-      // plik_LK << timer.getElapsedTimeInMilliSec() << endl;
-      // sprintf(buffer, "./sciezki/sciezka_LK_%d_%3.1f%%.txt",
-      // 	      n_wierzcholkow, gestosc_procent);
-      // nazwa_pliku = string(buffer);
-      // sciezkiDoPliku(nazwa_pliku, wynik);
+      timer.start();
+      wynik = BellmanFord<graf_LK>(G_LK, 0);
+      timer.stop();
+      plik_LK << timer.getElapsedTimeInMilliSec() << endl;
+      sprintf(buffer, "./sciezki/sciezka_LK_%d_%3.1f%%.txt",
+      	      n_wierzcholkow, gestosc_procent);
+      nazwa_pliku = string(buffer);
+      sciezkiDoPliku(nazwa_pliku, wynik);
       
-      // timer.start();
-      // wynik = BellmanFord<graf_MS>(G_MS, 0);
-      // timer.stop();
-      // plik_MS << timer.getElapsedTimeInMilliSec() << endl;
-      // sprintf(buffer, "./sciezki/sciezka_MS_%d_%3.1f%%.txt",
-      // 	      n_wierzcholkow, gestosc_procent);
-      // nazwa_pliku = string(buffer);
-      // sciezkiDoPliku(nazwa_pliku, wynik);
+      timer.start();
+      wynik = BellmanFord<graf_MS>(G_MS, 0);
+      timer.stop();
+      plik_MS << timer.getElapsedTimeInMilliSec() << endl;
+      sprintf(buffer, "./sciezki/sciezka_MS_%d_%3.1f%%.txt",
+      	      n_wierzcholkow, gestosc_procent);
+      nazwa_pliku = string(buffer);
+      sciezkiDoPliku(nazwa_pliku, wynik);
       
     }
 
